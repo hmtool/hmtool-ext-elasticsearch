@@ -1,0 +1,65 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>tech.mhuang</groupId>
+    <artifactId>hmtool-ext-elasticsearch</artifactId>
+    <version>1.1.0</version>
+    <packaging>pom</packaging>
+    <name>hmtool-ext-elasticsearch</name>
+    <url>http://maven.apache.org</url>
+    <description>es查询实现类</description>
+    <parent>
+        <artifactId>hmtool-ext-parent</artifactId>
+        <groupId>tech.mhuang</groupId>
+        <version>1.1.0</version>
+        <relativePath>../hmtool-ext-parent/pom.xml</relativePath>
+    </parent>
+    <properties>
+        <lombok.version>1.18.8</lombok.version>
+        <fastjson.version>1.2.58</fastjson.version>
+        <resthigh.client.version>6.5.1</resthigh.client.version>
+        <log4j-to-slf4j.version>2.11.2</log4j-to-slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
+    </properties>
+    <developers>
+        <developer>
+            <name>mhuang</name>
+            <email>mhuang_email@163.com</email>
+            <url>http://mhuang.tech</url>
+        </developer>
+        <developer>
+            <name>zhangxh</name>
+            <email>253646984@qq.com</email>
+        </developer>
+    </developers>
+    <dependencies>
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${resthigh.client.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+            <version>${log4j-to-slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>slf4j-api</artifactId>
+            <groupId>org.slf4j</groupId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+
+    </dependencies>
+</project>
