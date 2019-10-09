@@ -4,7 +4,7 @@
 
     <groupId>tech.mhuang</groupId>
     <artifactId>hmtool-ext-elasticsearch</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1</version>
     <name>hmtool-ext-elasticsearch</name>
     <url>http://maven.apache.org</url>
     <description>es查询实现类</description>
