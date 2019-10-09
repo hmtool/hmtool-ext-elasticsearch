@@ -15,12 +15,13 @@ import org.elasticsearch.search.builder.SearchSourceBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
- * @ClassName DefaultEsQuery
- * @Description: 默认的查询实现
- * @Author admin
- * @Date 2019/05/30 9:31
- * @Version 0.0.3.3.2
+ *
+ * 默认的查询实现
+ *
+ * @author zhangxh
+ * @since 1.0.0
  */
 @Slf4j
 public class DefaultESQuery extends AbstractESQuery {

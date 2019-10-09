@@ -24,18 +24,16 @@ public interface IESFactory {
     /**
      * 获取构造器
      *
-     * @return
+     * @return ESSearchBuilder
      */
     ESSearchBuilder getBuilder();
 
     /**
      * 获取es查询实现类
      *
-     * @return
+     * @return AbstractESQuery
      */
     AbstractESQuery getQuery();
-
-
 
     /**
      * 新增
@@ -52,6 +50,7 @@ public interface IESFactory {
      * @param index 新增的数据中的索引
      * @param type  新增的数据中的类型
      * @return String 返回id
+     * @throws IOException io异常
      */
     <T> IndexResponse insert(T data, String index, String type) throws IOException;
 
@@ -62,6 +61,7 @@ public interface IESFactory {
      * @param index 新增的数据中的索引
      * @param type  新增的数据中的类型
      * @return String 返回id
+     * @throws IOException io异常
      */
     IndexResponse insert(String data, String index, String type) throws IOException;
 
@@ -69,7 +69,8 @@ public interface IESFactory {
      * 修改
      *  @param t  修改的数据
      * @param id 修改的id
-     * @return
+     * @return UpdateResponse
+     * @throws IOException io异常
      */
     <T> UpdateResponse update(T t, String id) throws IOException;
 
@@ -79,7 +80,8 @@ public interface IESFactory {
      * @param index 更新的索引
      * @param type  更新的类型
      * @param id    更新的id
-     * @return
+     * @return UpdateResponse
+     * @throws IOException io异常
      */
     UpdateResponse update(String data, String index, String type, String id) throws IOException;
 
@@ -89,14 +91,15 @@ public interface IESFactory {
      * @param index 更新的索引
      * @param type  更新的类型
      * @param id    更新的id
-     * @return
+     * @return UpdateResponse
+     * @throws IOException io异常
      */
     <T> UpdateResponse update(T data, String index, String type, String id) throws IOException;
 
     /**
      * 删除索引及数据
      * @param index 索引
-     * @return
+     * @return AcknowledgedResponse
      * @throws IOException
      */
     AcknowledgedResponse delete(String index) throws IOException;
@@ -107,7 +110,7 @@ public interface IESFactory {
      * @param index 删除的索引
      * @param type 删除的索引类型
      * @param id   删除的id
-     * @return
+     * @return DeleteResponse
      * @throws IOException
      */
     DeleteResponse delete(String index, String type, String id) throws IOException;
@@ -124,6 +127,7 @@ public interface IESFactory {
      * @param index      更新的索引
      * @param type       更新的索引类型
      * @param properties 更新的属性
+     * @throws Exception 更新异常
      */
     AcknowledgedResponse updateIndexProperties(String index, String type, IndexProperties properties) throws Exception;
 }

@@ -21,8 +21,8 @@ public class IndexProperties {
 
     /**
      * 写入参数
-     * @param key
-     * @param parameter
+     * @param key 写入的key
+     * @param parameter 写入的参数
      * @return IndexProperties
      */
     public  IndexProperties addKey(String key,IndexParameter parameter){
@@ -32,15 +32,11 @@ public class IndexProperties {
 
     /**
      * 移除参数
-     * @param key
+     * @param key 移除的key
      * @return IndexProperties
      */
     public  IndexProperties removeKey(String key){
         properties.remove(key);
         return this;
     }
-
-
-
-
 }

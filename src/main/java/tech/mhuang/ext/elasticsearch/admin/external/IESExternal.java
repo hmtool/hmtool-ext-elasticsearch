@@ -4,15 +4,17 @@ import tech.mhuang.ext.elasticsearch.server.ESFactory;
 import tech.mhuang.ext.elasticsearch.admin.factory.IESFactory;
 
 /**
- * @package: tech.mhuang.ext.elasticsearch.admin.external
- * @author: mhuang
- * @Date: 2019/9/16 14:33
- * @Description:
+ *
+ * es扩展
+ *
+ * @author mhuang
+ * @since 1.0.0
  */
 public interface IESExternal {
 
     /**
      * 创建
+     * @param key
      * @return
      */
     default IESFactory create(String key){

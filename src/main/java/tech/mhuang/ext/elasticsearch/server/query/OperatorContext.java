@@ -1,12 +1,13 @@
 package tech.mhuang.ext.elasticsearch.server.query;
 
 import lombok.Data;
+
 /**
- * @ClassName OperateContext
- * @Description: 查询条件封装类
- * @Author admin
- * @Date 2019/05/30 9:33
- * @Version 0.0.3.3.2
+ *
+ * 查询条件封装类
+ *
+ * @author zhangxh
+ * @since 1.0.0
  */
 @Data
 public class OperatorContext {
@@ -30,8 +31,4 @@ public class OperatorContext {
      * 操作类型
      */
     private OperatorType operateType;
-
-
-
-
 }

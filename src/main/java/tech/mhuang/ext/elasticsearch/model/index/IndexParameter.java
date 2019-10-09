@@ -5,6 +5,13 @@ import lombok.Data;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ * 参数类
+ *
+ * @author zhangxh
+ * @since 1.0.0
+ */
 @Data
 public class IndexParameter {
 
@@ -21,8 +28,8 @@ public class IndexParameter {
 
     /**
      * 写入参数
-     * @param key
-     * @param value
+     * @param key 写入的key
+     * @param value 写入的value
      * @return IndexParameter
      */
     public  IndexParameter addKey(String key,String value){
@@ -32,14 +39,11 @@ public class IndexParameter {
 
     /**
      * 移除参数
-     * @param key
+     * @param key 移除的key
      * @return IndexProperties
      */
     public  IndexParameter removeKey(String key){
         parameters.remove(key);
         return this;
     }
-
-
-
 }

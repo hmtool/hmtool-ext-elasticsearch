@@ -14,7 +14,7 @@ public class ESBuilder {
     /**
      * 构建jwt构造器
      *
-     * @return
+     * @return Builder
      */
     public static Builder builder() {
         return new Builder();
@@ -31,7 +31,7 @@ public class ESBuilder {
         /**
          * 配置是否启动配置、默认不启动、要使用需要设置为启动
          * @param enable 启动
-         * @return
+         * @return ProducerBuilder
          */
         public ProducerBuilder enable(boolean enable){
             this.info.setEnable(enable);
@@ -117,7 +117,7 @@ public class ESBuilder {
         /**
          * 设置客户端连接超时时间毫秒级 默认10000 10秒
          * @param connectionTimeout 客户端连接超时时间
-         * @return
+         * @return ProducerBuilder
          */
         public ProducerBuilder connectionTimeout(Integer connectionTimeout) {
             this.info.setConnectionTimeout(connectionTimeout);

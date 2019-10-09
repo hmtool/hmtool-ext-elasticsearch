@@ -68,7 +68,7 @@ public class ESFactory implements IESFactory {
      * 插入
      *
      * @param t 插入的数据
-     * @return
+     * @return IndexResponse
      */
     @Override
     public <T> IndexResponse insert(T t) throws IOException {
@@ -113,7 +113,7 @@ public class ESFactory implements IESFactory {
      * ES更新
      *
      * @param t 更新的对象
-     * @return
+     * @return UpdateResponse
      * @see IESFactory#update(java.lang.Object, java.lang.String)
      */
     @Override

@@ -18,11 +18,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Stack;
 /**
- * @ClassName AbstractEsQueryAware
- * @Description: 查询封装类
- * @Author admin
- * @Date 2019/05/30 9:31
- * @Version 0.0.3.3.2
+ *
+ * 查询封装类
+ *
+ * @author zhangxh
+ * @since 1.0.0
  */
 @Slf4j
 public abstract class AbstractESQueryAware implements ESQueryAware {
@@ -72,14 +72,12 @@ public abstract class AbstractESQueryAware implements ESQueryAware {
     protected  void analizeScollContext(SearchScrollRequest searchRequest,  QueryContext queryContext){
             searchRequest.scroll(TimeValue.timeValueMinutes(queryContext.getScrollTimeout()==null?QueryContext.SCROLL_TIMEOUT_DEFAULT:queryContext.getScrollTimeout()));
     }
+
     /**
-    * @Title analizeFirstScollContext
-    * @Author admin
-    * @Description 分页第一次查询
-    * @Date 14:49 2019/05/30
-    * @Param [searchRequest, queryContext]
-    * @return void
-    */
+     * 分页第一次查询
+     * @param searchRequest
+     * @param queryContext
+     */
     protected  void analizeFirstScollContext(SearchRequest searchRequest, QueryContext queryContext){
         searchRequest.scroll(TimeValue.timeValueMinutes(queryContext.getScrollTimeout()==null?QueryContext.SCROLL_TIMEOUT_DEFAULT:queryContext.getScrollTimeout()));
     }

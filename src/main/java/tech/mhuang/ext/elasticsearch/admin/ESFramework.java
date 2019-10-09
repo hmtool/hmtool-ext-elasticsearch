@@ -37,8 +37,8 @@ public class ESFramework {
 
     /**
      * 获取容器
-     * @param key
-     * @return
+     * @param key 获取容器的key
+     * @return IESFactory
      */
     public IESFactory getFactory(String key){
         return this.factory.get(key);
