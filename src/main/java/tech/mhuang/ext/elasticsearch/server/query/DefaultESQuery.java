@@ -99,7 +99,7 @@ public class DefaultESQuery extends AbstractESQuery {
                         scrollId = searchScrollResponse.getScrollId();
                         hits = searchScrollResponse.getHits();
                     }
-                    long totalHits =  hits.totalHits;
+                    long totalHits =  hits.getTotalHits().value;
                     esPage.setTotal(totalHits);
                     List<T> results = new ArrayList<>();
                     if(hits !=null && hits.getHits()!=null && hits.getHits().length>0){
