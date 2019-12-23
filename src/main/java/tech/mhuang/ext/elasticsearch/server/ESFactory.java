@@ -3,7 +3,6 @@ package tech.mhuang.ext.elasticsearch.server;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.admin.indices.mapping.put.PutMappingRequest;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
@@ -13,6 +12,7 @@ import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.slf4j.Logger;
@@ -73,28 +73,28 @@ public class ESFactory implements IESFactory {
     @Override
     public <T> IndexResponse insert(T t) throws IOException {
         ESTable esTable = checkESTable(t);
-        return insert(t, esTable.index(), esTable.type());
+        return insert(t, esTable.index());
     }
 
     @Override
-    public <T> IndexResponse insert(T t, String index, String type) throws IOException {
-        return insert(packEntity(t), index, type);
+    public <T> IndexResponse insert(T t, String index ) throws IOException {
+        return insert(packEntity(t), index);
     }
 
     @Override
-    public IndexResponse insert(String data, String index, String type) throws IOException {
-        return baseInsert(data, index, type);
+    public IndexResponse insert(String data, String index) throws IOException {
+        return baseInsert(data, index);
     }
 
     private <T> String packEntity(T t) {
         return JSON.toJSONString(t);
     }
 
-    private IndexResponse baseInsert(String data, String index, String type) throws IOException {
+    private IndexResponse baseInsert(String data, String index) throws IOException {
         logger.debug("===正在插入ES数据=====");
         logger.debug("放入得ES数据为{}", data);
         JSONObject jsonObject = JSONObject.parseObject(data);
-        IndexRequest indexRequest = new IndexRequest(index, type).source(jsonObject);
+        IndexRequest indexRequest = new IndexRequest(index).source(jsonObject);
 
         IndexResponse response = client.index(indexRequest, RequestOptions.DEFAULT);
         logger.debug("===放入ES数据完毕=====,response:{}", response);
@@ -119,12 +119,12 @@ public class ESFactory implements IESFactory {
     @Override
     public <T> UpdateResponse update(T t, String id) throws IOException {
         ESTable esTable = checkESTable(t);
-        return update(t, esTable.index(), esTable.type(), id);
+        return update(t, esTable.index(),  id);
     }
 
     @Override
-    public <T> UpdateResponse update(T t, String index, String type, String id) throws IOException {
-        return update(packEntity(t), index, type, id);
+    public <T> UpdateResponse update(T t, String index,  String id) throws IOException {
+        return update(packEntity(t), index,  id);
     }
 
     @Override
@@ -137,24 +137,24 @@ public class ESFactory implements IESFactory {
     }
 
     @Override
-    public DeleteResponse delete(String index, String type, String id) throws IOException {
-        logger.debug("===正在删除ES数据=====,index:{},type:{},id:{}", index, type, id);
-        DeleteRequest deleteRequest = new DeleteRequest(index, type, id);
+    public DeleteResponse delete(String index,  String id) throws IOException {
+        logger.debug("===正在删除ES数据=====,index:{},id:{}", index, id);
+        DeleteRequest deleteRequest = new DeleteRequest(index,  id);
         DeleteResponse response = client.delete(deleteRequest, RequestOptions.DEFAULT);
         logger.debug("===删除ES数据完毕=====,response:{}", response);
         return response;
     }
 
     @Override
-    public UpdateResponse update(String data, String index, String type, String id) throws IOException {
-        return baseUpdate(data, index, type, id);
+    public UpdateResponse update(String data, String index,  String id) throws IOException {
+        return baseUpdate(data, index,  id);
     }
 
-    private UpdateResponse baseUpdate(String data, String index, String type, String id) throws IOException {
+    private UpdateResponse baseUpdate(String data, String index,  String id) throws IOException {
         logger.debug("===正在修改ES数据=====");
         logger.debug("修改ES数据为{}，id为:{}", data, id);
         JSONObject jsonObject = JSONObject.parseObject(data);
-        UpdateRequest updateRequest = new UpdateRequest(index, type, id)
+        UpdateRequest updateRequest = new UpdateRequest(index,  id)
                 .doc(jsonBuilder().map(jsonObject));
         UpdateResponse response = getClient().update(updateRequest, RequestOptions.DEFAULT);
         logger.debug("打印应答的数据是:{}", response);
@@ -171,7 +171,7 @@ public class ESFactory implements IESFactory {
      * 更新索引属性
      */
     @Override
-    public AcknowledgedResponse updateIndexProperties(String index, String type, IndexProperties properties) throws Exception {
+    public AcknowledgedResponse updateIndexProperties(String index, IndexProperties properties) throws Exception {
         PutMappingRequest request = new PutMappingRequest(index);
         XContentBuilder builder = XContentFactory.jsonBuilder();
         builder.startObject();
@@ -199,7 +199,6 @@ public class ESFactory implements IESFactory {
             builder.endObject();
         }
         builder.endObject();
-        request.type(type);
         request.source(builder);
         AcknowledgedResponse response = this.getClient().indices().putMapping(request, RequestOptions.DEFAULT);
         logger.debug("打印应答的数据是:{}", response);

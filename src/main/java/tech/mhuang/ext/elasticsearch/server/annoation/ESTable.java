@@ -25,12 +25,6 @@ public @interface ESTable {
 	String index();
 
 	/**
-	 * 类型
-	 * @return String
-	 */
-	String type() default "";
-
-	/**
 	 * 分片数
 	 * @return short
 	 */

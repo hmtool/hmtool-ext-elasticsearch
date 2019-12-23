@@ -48,22 +48,20 @@ public interface IESFactory {
      *
      * @param data  新增的数据
      * @param index 新增的数据中的索引
-     * @param type  新增的数据中的类型
      * @return String 返回id
      * @throws IOException io异常
      */
-    <T> IndexResponse insert(T data, String index, String type) throws IOException;
+    <T> IndexResponse insert(T data, String index) throws IOException;
 
     /**
      * 新增
      *
      * @param data  新增的数据
      * @param index 新增的数据中的索引
-     * @param type  新增的数据中的类型
      * @return String 返回id
      * @throws IOException io异常
      */
-    IndexResponse insert(String data, String index, String type) throws IOException;
+    IndexResponse insert(String data, String index) throws IOException;
 
     /**
      * 修改
@@ -78,23 +76,21 @@ public interface IESFactory {
      * 数据更新
      *  @param data  更新的数据
      * @param index 更新的索引
-     * @param type  更新的类型
      * @param id    更新的id
      * @return UpdateResponse
      * @throws IOException io异常
      */
-    UpdateResponse update(String data, String index, String type, String id) throws IOException;
+    UpdateResponse update(String data, String index, String id) throws IOException;
 
     /**
      * 数据更新
      *  @param data  更新的数据
      * @param index 更新的索引
-     * @param type  更新的类型
      * @param id    更新的id
      * @return UpdateResponse
      * @throws IOException io异常
      */
-    <T> UpdateResponse update(T data, String index, String type, String id) throws IOException;
+    <T> UpdateResponse update(T data, String index,  String id) throws IOException;
 
     /**
      * 删除索引及数据
@@ -108,12 +104,11 @@ public interface IESFactory {
      * 通过id删除数据
      *
      * @param index 删除的索引
-     * @param type 删除的索引类型
      * @param id   删除的id
      * @return DeleteResponse
      * @throws IOException
      */
-    DeleteResponse delete(String index, String type, String id) throws IOException;
+    DeleteResponse delete(String index, String id) throws IOException;
     /**
      * 获取链接
      *
@@ -125,9 +120,8 @@ public interface IESFactory {
      * 更新索引属性
      *
      * @param index      更新的索引
-     * @param type       更新的索引类型
      * @param properties 更新的属性
      * @throws Exception 更新异常
      */
-    AcknowledgedResponse updateIndexProperties(String index, String type, IndexProperties properties) throws Exception;
+    AcknowledgedResponse updateIndexProperties(String index,  IndexProperties properties) throws Exception;
 }
